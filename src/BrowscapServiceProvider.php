@@ -40,6 +40,11 @@ class BrowscapServiceProvider extends \Illuminate\Support\ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                Console\CheckUpdateCommand::class,
+                Console\ConvertCommand::class,
+                Console\FetchCommand::class,
+                Console\LogfileCommand::class,
+                Console\ParserCommand::class,
                 Console\UpdateCommand::class,
             ]);
         }
