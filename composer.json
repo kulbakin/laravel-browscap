@@ -1,0 +1,23 @@
+{
+    "name": "propa/laravel-browscap",
+    "description": "Browscap-PHP integration for Laravel 5",
+    "keywords": ["laravel", "browscap", "browscap-php", 'user-agent', 'browser'],
+    "version": "2.0.4",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Klbakin",
+            "email": "p.kulbakin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "browscap/browscap-php": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Propa\\BrowscapPHP\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
