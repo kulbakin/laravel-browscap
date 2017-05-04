@@ -17,8 +17,5 @@ class CheckUpdateCommand extends Command
     public function __construct()
     {
         parent::__construct(config('browscap.cache'));
-
-        // allocate necessary resources for the possible pick usage during parsing/caching of browscap.ini database file
-        ini_set('memory_limit', '512M');
     }
 }

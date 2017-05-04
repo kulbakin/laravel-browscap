@@ -12,7 +12,7 @@ return [
     |   Full_PHP_BrowscapINI
     |
     */
-    'file' => 'PHP_BrowscapINI',
+    'remote-file' => 'PHP_BrowscapINI',
 
     /*
     |--------------------------------------------------------------------------
@@ -23,4 +23,14 @@ return [
     |
     */
     'cache' => storage_path('framework/cache/browscap'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | browscap.ini location
+    |--------------------------------------------------------------------------
+    |
+    | Where database ini file is located or stored, only used by some console commands
+    |
+    */
+    'file' => storage_path('framework/cache/browscap/browscap.ini'),
 ];
