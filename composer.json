@@ -19,5 +19,15 @@
             "Propa\\BrowscapPHP\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Propa\\BrowscapPHP\\BrowscapServiceProvider"
+            ],
+            "aliases": {
+                "Browscap": "Propa\\BrowscapPHP\\Facades\\Browscap"
+            }
+        }
+    }
 }
