@@ -4,17 +4,9 @@
 
 ## Installation
 
-Add package to your composer
+Run `composer require propa/laravel-browscap`
 
-```
-{
-    "require": {
-        "propa/laravel-browscap": "1.*"
-    }
-}
-``` 
-
-Run `composer update`
+If you're using Laravel 5.5 and didn't disabled package auto discovery  referencing
 
 Reference service provider and corresponding alias in your `app.php` config 
 
