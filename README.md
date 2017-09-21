@@ -1,6 +1,6 @@
 # laravel-browscap
 
-[Browscap-PHP](https://github.com/browscap/browscap-php) for [Laravel 5](http://laravel.com)
+[Browscap-PHP](https://github.com/browscap/browscap-php) for [Laravel 5](http://laravel.com)/[Lumen 5](https://lumen.laravel.com/)
 
 ## Installation
 
@@ -8,6 +8,7 @@ Run `composer require propa/laravel-browscap`
 
 If you're using Laravel 5.5 and didn't disabled package auto discovery  referencing
 
+### Laravel
 Reference service provider and corresponding alias in your `app.php` config 
 
 ```php
@@ -28,6 +29,18 @@ Publish package config if necessary
 
 ```cli
 php artisan vendor:publish
+```
+
+### Lumen
+
+For Lumen, register a different Provider in `bootstrap/app.php`:
+
+```php
+ $app->register(\Propa\BrowscapPHP\BrowscapServiceProvider::class);
+```
+and also a facade
+```php
+ class_alias(\Propa\BrowscapPHP\Facades\Browscap::class, Browscap::class);
 ```
 
 ## Usage

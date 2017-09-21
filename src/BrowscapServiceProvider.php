@@ -1,11 +1,19 @@
-<?php namespace Propa\BrowscapPHP;
+<?php
+
+namespace Propa\BrowscapPHP;
+
+use BrowscapPHP\Browscap;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
+use WurflCache\Adapter\File;
 
 /**
  * Browscap service provider
  *
  * @author Pavel Kulbakin <p.kulbakin@gmail.com>
  */
-class BrowscapServiceProvider extends \Illuminate\Support\ServiceProvider
+class BrowscapServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application events.
@@ -14,10 +22,8 @@ class BrowscapServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-		$this->publishes([
-			__DIR__.'/../config/browscap.php'  => config_path('browscap.php'),
-		]);
-	}
+        $this->setupConfig();
+    }
 
     /**
      * Register the service provider.
@@ -26,13 +32,9 @@ class BrowscapServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/browscap.php', 'browscap'
-        );
-
-        $this->app->singleton('browscap', function ($app) {
-            $bc = new \BrowscapPHP\Browscap();
-            $adapter = new \WurflCache\Adapter\File([\WurflCache\Adapter\File::DIR => config('browscap.cache')]);
+        $this->app->singleton('browscap', function () {
+            $bc = new Browscap();
+            $adapter = new File([File::DIR => config('browscap.cache')]);
             $bc->setCache($adapter);
 
             return $bc;
@@ -58,5 +60,18 @@ class BrowscapServiceProvider extends \Illuminate\Support\ServiceProvider
     public function provides()
     {
         return ['browscap'];
+    }
+
+    protected function setupConfig()
+    {
+        $source = dirname(__DIR__) . '/config/browscap.php';
+
+        if ($this->app instanceof LaravelApplication) {
+            $this->publishes([$source => config_path('browscap.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('browscap');
+        }
+
+        $this->mergeConfigFrom($source, 'browscap');
     }
 }
