@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Propa\BrowscapPHP;
 
 use BrowscapPHP\Browscap;
+use BrowscapPHP\BrowscapInterface;
+use Doctrine\Common\Cache\FilesystemCache;
+use Illuminate\Contracts\Foundation\Application as ApplicationContract;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
+use Roave\DoctrineSimpleCache\SimpleCacheAdapter;
 use WurflCache\Adapter\File;
 
 /**
@@ -20,7 +26,7 @@ class BrowscapServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->setupConfig();
     }
@@ -30,22 +36,26 @@ class BrowscapServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        $this->app->singleton('browscap', function () {
-            $bc = new Browscap();
-            $adapter = new File([File::DIR => config('browscap.cache')]);
-            $bc->setCache($adapter);
+        $this->app->singleton('browscap', function (ApplicationContract $app) {
+            $cache = new SimpleCacheAdapter(
+                new FilesystemCache(config('browscap.cache'))
+            );
+            $bc = new Browscap(
+                $cache,
+                $app->make('log')->driver()
+            );
 
             return $bc;
         });
+        $this->app->bind(BrowscapInterface::class, 'browscap');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\CheckUpdateCommand::class,
                 Console\ConvertCommand::class,
                 Console\FetchCommand::class,
-                Console\LogfileCommand::class,
                 Console\ParserCommand::class,
                 Console\UpdateCommand::class,
             ]);
@@ -57,14 +67,14 @@ class BrowscapServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['browscap'];
     }
 
     protected function setupConfig()
     {
-        $source = dirname(__DIR__) . '/config/browscap.php';
+        $source = realpath($raw = __DIR__.'/../config/browscap.php') ?: $raw;
 
         if ($this->app instanceof LaravelApplication) {
             $this->publishes([$source => config_path('browscap.php')]);

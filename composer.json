@@ -11,9 +11,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "^5.0,<5.6",
-        "browscap/browscap-php": "^3.1"
+        "php": ">=7.1.0,<7.3.0",
+        "illuminate/support": "~5.0",
+        "browscap/browscap-php": "~4.0"
     },
     "autoload": {
         "psr-4": {
