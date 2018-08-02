@@ -1,4 +1,8 @@
-<?php namespace Propa\BrowscapPHP\Console;
+<?php
+
+declare(strict_types=1);
+
+namespace Propa\BrowscapPHP\Console;
 
 use BrowscapPHP\Command\FetchCommand as Command;
 
@@ -16,7 +20,7 @@ class FetchCommand extends Command
      */
     public function __construct()
     {
-        parent::__construct(config('browscap.file'));
+        parent::__construct(config('browscap.cache'), config('browscap.file'));
 
         // set default option according to config option
         $this->getDefinition()->getOption('remote-file')->setDefault(config('browscap.remote-file'));

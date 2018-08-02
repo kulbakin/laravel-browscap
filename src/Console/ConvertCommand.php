@@ -1,4 +1,8 @@
-<?php namespace Propa\BrowscapPHP\Console;
+<?php
+
+declare(strict_types=1);
+
+namespace Propa\BrowscapPHP\Console;
 
 use BrowscapPHP\Command\ConvertCommand as Command;
 

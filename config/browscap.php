@@ -12,7 +12,7 @@ return [
     |   Full_PHP_BrowscapINI
     |
     */
-    'remote-file' => 'PHP_BrowscapINI',
+    'remote-file' => env('BROWSCAP_REMOTE_FILE', 'PHP_BrowscapINI'),
 
     /*
     |--------------------------------------------------------------------------

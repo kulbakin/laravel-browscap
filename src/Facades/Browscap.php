@@ -1,4 +1,8 @@
-<?php namespace Propa\BrowscapPHP\Facades;
+<?php
+
+declare(strict_types=1);
+
+namespace Propa\BrowscapPHP\Facades;
 
 /**
  * Facade for Browscap
@@ -13,7 +17,7 @@ class Browscap extends \Illuminate\Support\Facades\Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'browscap';
     }
