@@ -44,7 +44,7 @@ class BrowscapServiceProvider extends ServiceProvider
             );
             $bc = new Browscap(
                 $cache,
-                $app->make('log')->driver()
+                $app->make('log')
             );
 
             return $bc;
