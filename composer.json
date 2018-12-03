@@ -2,7 +2,7 @@
     "name": "propa/laravel-browscap",
     "description": "Browscap-PHP integration for Laravel 5",
     "keywords": ["laravel", "browscap", "browscap-php", "user-agent", "browser"],
-    "version": "2.0.1",
+    "version": "2.0.2",
     "license": "MIT",
     "authors": [
         {
