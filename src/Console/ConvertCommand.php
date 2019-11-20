@@ -22,7 +22,5 @@ class ConvertCommand extends Command
     {
         parent::__construct(config('browscap.cache'), config('browscap.file'));
 
-        // allocate necessary resources for the possible pick usage during parsing/caching of browscap.ini database file
-        ini_set('memory_limit', '512M');
     }
 }
