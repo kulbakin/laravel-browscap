@@ -1,6 +1,6 @@
 {
     "name": "propa/laravel-browscap",
-    "description": "Browscap-PHP integration for Laravel 5",
+    "description": "Browscap-PHP integration for Laravel 5/6",
     "keywords": ["laravel", "browscap", "browscap-php", "user-agent", "browser"],
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.1.0",
-        "illuminate/support": "^5.0",
+        "illuminate/support": "^5.0|^6.0",
         "browscap/browscap-php": "^4.0"
     },
     "autoload": {

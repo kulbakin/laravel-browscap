@@ -6,7 +6,7 @@
 
 Run `composer require propa/laravel-browscap`
 
-If you're using Laravel 5.5 and didn't disabled package auto discovery referencing
+If you're using Laravel 5.5 or 6 and didn't disabled package auto discovery referencing
 
 ### Laravel
 Reference service provider and corresponding alias in your `app.php` config 
