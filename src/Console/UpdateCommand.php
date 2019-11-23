@@ -25,8 +25,5 @@ class UpdateCommand extends Command
         // set default option according to config option
         $this->getDefinition()->getOption('remote-file')->setDefault(config('browscap.remote-file'));
 
-        // allocate necessary resources for the possible pick usage during parsing/caching of browscap.ini database file
-        ini_set('memory_limit', '512M');
-
     }
 }
