@@ -7,7 +7,7 @@ namespace Propa\BrowscapPHP;
 use BrowscapPHP\Browscap;
 use BrowscapPHP\BrowscapInterface;
 use Doctrine\Common\Cache\FilesystemCache;
-use Illuminate\Contracts\Foundation\Application as ApplicationContract;
+use Illuminate\Contracts\Container\Container as ContainerContract;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
@@ -38,7 +38,7 @@ class BrowscapServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('browscap', function (ApplicationContract $app) {
+        $this->app->singleton('browscap', function (ContainerContract $app) {
             $cache = new SimpleCacheAdapter(
                 new FilesystemCache(config('browscap.cache'))
             );
